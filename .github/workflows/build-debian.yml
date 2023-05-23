@@ -1,8 +1,6 @@
 name: Build Debian
 
 on:
-  schedule:
-    - cron: '* * */7 * *'
   push:
     branches: [ "master" ]
     # Publish semver tags as releases.

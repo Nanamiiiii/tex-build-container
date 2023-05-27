@@ -17,7 +17,13 @@ RUN tlmgr install \
   collection-langjapanese \
   collection-latexextra \
   latexmk \
-  epsf
+  epsf \
+  newtx \
+  fontaxes \
+  boondox \
+  txfonts \
+  helvetic \
+  wrapfig
 
 FROM debian:11.5-slim
 

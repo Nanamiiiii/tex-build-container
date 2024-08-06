@@ -1,4 +1,4 @@
-FROM debian:11.5-slim AS installer
+FROM debian:12.6-slim AS installer
 ENV PATH /usr/local/bin/texlive:$PATH
 WORKDIR /install-tl-unx
 RUN apt-get update
@@ -25,12 +25,12 @@ RUN tlmgr install \
   helvetic \
   wrapfig
 
-FROM debian:11.5-slim
+FROM debian:12.6-slim
 
-ARG USERNAME=user
-ARG GROUPNAME=user
-ARG UID=1000
-ARG GID=1000
+#ARG USERNAME=user
+#ARG GROUPNAME=user
+#ARG UID=1000
+#ARG GID=1000
 
 ENV PATH /usr/local/bin/texlive:$PATH
 COPY --from=installer /usr/local/texlive /usr/local/texlive
@@ -41,9 +41,9 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 RUN ln -sf /usr/local/texlive/*/bin/* /usr/local/bin/texlive
 
-RUN groupadd -g $GID $GROUPNAME && \
-    useradd -m -s /bin/bash -u $UID -g $GID $USERNAME
-USER $USERNAME
+#RUN groupadd -g $GID $GROUPNAME && \
+#    useradd -m -s /bin/bash -u $UID -g $GID $USERNAME
+#USER $USERNAME
 WORKDIR /workdir
 
 CMD ["bash"]
